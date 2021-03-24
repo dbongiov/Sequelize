@@ -1,3 +1,6 @@
+
+// does fetch go here or server.js?
+
 app.route('/api')
   .get(async (req, res) => {
     console.log('GET request detected');
@@ -22,3 +25,5 @@ app.route('/api')
 
     res.json({data: json});
   });
+
+
