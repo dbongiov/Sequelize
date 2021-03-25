@@ -1,6 +1,56 @@
 
-// does fetch go here or server.js?
 
+async function getDiningHalls() {
+    const hallRequest = await fetch('/api/dining');
+    const hallData = await hallRequest.json();
+    const tableBody = document.querySelector('tbody');
+
+  hallData.data.forEach((hall) => {
+      const appendLine = document.createElement('tr');
+      appendLine.innerHTML = `
+        <td>${hall.hall_name}</td>
+        <td>${hall.hall_address}</td>
+        <td>${hall.hall_address}</td>`;
+      tableBody.append(appendLine);
+    });
+}
+
+window.onload = getDiningHalls();
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+const appendItem = document.createElement('div');
+    appendItem.classList.add('tile', 'has-text-centered', 'is-parent', 'is-3');
+    appendItem.innerHTML = `
+      <article class = tile is-child box has-background-link dark ">
+      <span class = "subtitle has-text-light has-text-weight-bold">
+        ${hall.hall_name}</span>
+      <br />
+      <span class="has-text-light">
+        ${hall.hall_address.split(',')[0]}
+      </span>
+      <br />
+      <span class="has-text-light">
+        ${hall.hall_address.split(',')[1]}
+      </span>
+      </article>}`;
+    targetBox.append(appendItem);
+*/
+
+
+
+/*
 app.route('/api')
   .get(async (req, res) => {
     console.log('GET request detected');
@@ -25,5 +75,5 @@ app.route('/api')
 
     res.json({data: json});
   });
-
+*/
 
