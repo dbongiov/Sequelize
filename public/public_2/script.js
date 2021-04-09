@@ -1,19 +1,10 @@
-
 const tableBody = document.querySelector('.tableBody');
-const tableBody2 = document.querySelector('.tableBody2');
-async function getDiningHalls() {
-  const hallRequest = await fetch('/api/dining');
-  const hallData = await hallRequest.json();
-
-  hallData.data.forEach((hall) => {
-    const appendLine = document.createElement('tr');
-    appendLine.innerHTML = `
-        <td>${hall.hall_id}</td>
-        <td>${hall.hall_name}</td>
-        <td>${hall.hall_address}</td>`;
-    tableBody.append(appendLine);
-  });
-}
+/*
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}*/
 
 async function getMeals() {
   console.log('data request');
@@ -23,20 +14,27 @@ async function getMeals() {
     const appendLine = document.createElement('tr');
     appendLine.innerHTML = `
         <td>${meal.meal_id}</td>
-        <td>${meal.meal_name}</td>
+        <td>${meal.name}</td>
         <td>${meal.calories}</td>;
         <td>${meal.carbs}</td>;
         <td>${meal.sodium}</td>;
         <td>${meal.protein}</td>;
         <td>${meal.fat}</td>;
         <td>${meal.cholesterol}</td>`;
-    tableBody2.append(appendLine);
+    tableBody.append(appendLine);
   });
 }
 
 async function windowActions() {
-  getDiningHalls();
-  getMeals();
+  console.log('loaded window');
+  const results = await getMeals();
+ /* const meals = results.data;
+  const mealArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const selectedMeals = mealArray.map((element) => {
+    const random = getRandomIntInclusive(0, meals.length - 1);
+    return meals[random];
+  });*/
+  console.table(selectedMeals);
 }
 
 window.onload = windowActions;
